@@ -7,7 +7,7 @@ var tests = [
         errMsg: '',
         baseUrl: 'http://bradoyler.github.io',
         urlSegments: ['/tech/', '/tech', '/tech/mobile', '/tech/mobile/', '/tech/gadgets'],
-        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<div class=\'section\'>'}]
+        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<div class="panel-section'}]
     },
     {
         id: '101',
@@ -16,8 +16,8 @@ var tests = [
         status: '',
         errMsg: '',
         baseUrl: 'http://bradoyler.github.io',
-        urlSegments: ['', '/'],
-        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<body'}]
+        urlSegments: ['/'],
+        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<header class="grid'}]
     },
     {
         id: '102',
@@ -26,7 +26,7 @@ var tests = [
         status: '',
         errMsg: '',
         baseUrl: 'http://bradoyler.github.io',
-        urlSegments: ['/tech/gadgets/test-n12345'],
+        urlSegments: ['/tech/gadgets/test-n364676'],
         assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<body'}]
     },
     {

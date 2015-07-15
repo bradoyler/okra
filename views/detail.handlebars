@@ -1,7 +1,7 @@
 <div class="container">
     <h3>Test: {{name}} </h3>
     <p>Updated: {{dateformat updatedAt 'MMMM Do, h:mm a'}}</p>
-    <p class="{{#if errMsg}}text-danger{{/if}}">Last run : ({{status}}) {{runAt}} - {{#if errmsg}} Error: {{errMsg}}{{/if}}</p>
+    <p class="{{#if errMsg}}text-danger{{/if}}"><a href="/testrun/{{lastRunId}}">Last run: ({{status}}) {{runAt}} - {{#if errmsg}} Error: {{errMsg}}{{/if}}</a></p>
 
     <hr />
     <strong>Default BaseURL:</strong>

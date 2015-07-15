@@ -12,7 +12,7 @@ function runTests(tests) {
     });
 }
 
-function runAssertions(response, test) {
+function getAssertionResults(response, test) {
 
     var assertions = test.assertions;
 
@@ -28,7 +28,7 @@ function runAssertions(response, test) {
                 assertion.success = (response.body.indexOf(decodeURI(assertion.value)) > -1);
             }
     });
-    return assertions;
+    return assertions; // results
 }
 
 function testSegment(test, segment, callback) {
@@ -38,7 +38,7 @@ function testSegment(test, segment, callback) {
             callback(error, []); return;
         }
 
-        var assertionResults = runAssertions(response, test);
+        var assertionResults = getAssertionResults(response, test);
         callback(null, assertionResults);
     });
 }

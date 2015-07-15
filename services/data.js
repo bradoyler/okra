@@ -29,8 +29,10 @@ function createTestRun(test, baseUrl) {
     var testRun = JSON.parse(JSON.stringify(test));
     testRun.testId = test.id;
     testRun.baseUrl = baseUrl;
+    testRun.errMsg = '';
     testRun.id = test.id +'-'+ new Date().getTime();
     testRun.createdAt = new Date();
+    testRun.runAt = '';
     testRun.status = 'new';
     testRun.results = [];
     return testRun;
@@ -56,7 +58,9 @@ function updateTestWithResults(testrun, results) {
     localData.getTest(testrun.testId, function (test) {
 
         test.status = 'success';
+        test.errMsg = '';
         test.runAt = new Date();
+        test.lastRunId = testrun.id;
 
         var firstFail = results.filter(function (result) {
             return (result.success === 'false');
@@ -75,7 +79,9 @@ function saveTestResults(results, callback) {
 
         if (testrun) {
             testrun.results.push(results);
-            testrun.status = 'success';
+            if(testrun.status !== 'fail') {
+                testrun.status = 'success';
+            }
             testrun.runAt = new Date();
 
             var firstFail = results.filter(function (result) {
@@ -83,7 +89,6 @@ function saveTestResults(results, callback) {
             })[0];
 
             if(firstFail) {
-                console.log('### FAIL');
                 testrun.status = 'fail';
                 testrun.errMsg = 'on ('+ firstFail.type +') of: '+ firstFail.value;
             }

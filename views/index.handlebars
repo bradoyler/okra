@@ -7,15 +7,15 @@
             <!--<caption>4 tests... 3 passed, 1 failed.</caption>-->
             <thead>
                 <tr>
-                    <th>Test</th><th>Last Result</th><th>Last Run</th>
+                    <th>Test</th><th>Last Result</th><th>Executed</th>
                 </tr>
             </thead>
             <tbody>
             {{#each tests}}
                <tr class="{{#if errMsg}}danger{{/if}}">
                    <th scope="row"><a href="/test/{{id}}">{{id}} - {{name}}</a></th>
-                   <td>{{status}} {{errMsg}}</td>
-                   <td>{{#if runAt}}{{formatdate runAt}}{{/if}}</td>
+                   <td><a href="/testrun/{{lastRunId}}"> {{status}} {{errMsg}}</a></td>
+                   <td>{{#if runAt}}{{formatdate runAt}} ago{{/if}}</td>
                </tr>
             {{/each}}
             </tbody>

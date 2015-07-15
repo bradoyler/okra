@@ -22,10 +22,30 @@
             <li> <div>Has {{type}}:</div><textarea>{{value}}</textarea> </li>
         {{/each}}
     </ul>
-    <strong>Results:</strong>
-    <ul>
-        {{#each results }}
-            <li>{{jsonstring this}}</li>
-        {{/each}}
-    </ul>
+
+    <div class="">
+        <h3>Results <span class="glyphicon glyphicon-tasks"></span>
+        </h3>
+        <table class="table table-bordered table-hover">
+            <!--<caption>4 tests... 3 passed, 1 failed.</caption>-->
+            <thead>
+            <tr>
+                <th>Path</th><th>Type</th><th>Value</th><th>Success</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each results}}
+                    {{#each this}}
+                        <tr class="{{#ifEqual success 'false'}}danger{{/ifEqual}}">
+                            <td>{{testPath}}</td>
+                            <td>{{type}}</td>
+                            <td>{{value}}</td>
+                            <td>{{success}}</td>
+                        </tr>
+                    {{/each}}
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
 </div>
