@@ -4,8 +4,9 @@
 var CronJob = require('cron').CronJob;
 var testRunner = require('./services/testRunner');
 var resTestApi = process.env.API_BASE_URL || 'http://localhost:3000';
+var cronInterval = process.env.CRON_INTERVAL || '*/9 * * * * *';
 
-new CronJob('*/9 * * * * *', function(){
+new CronJob(cronInterval, function(){
     console.log('## worker polled for new test -'+ new Date());
 
     testRunner.getTestRunsFromApi(resTestApi, function (error, data) {
