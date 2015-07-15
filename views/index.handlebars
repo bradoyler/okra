@@ -1,0 +1,33 @@
+
+<div class="container">
+    <div class="">
+        <h3>Tests <span class="glyphicon glyphicon-tasks"></span>
+        </h3>
+        <table class="table table-bordered table-hover">
+            <!--<caption>4 tests... 3 passed, 1 failed.</caption>-->
+            <thead>
+                <tr>
+                    <th>Test</th><th>Last Result</th><th>Last Run</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each tests}}
+               <tr class="{{#if errMsg}}danger{{/if}}">
+                   <th scope="row"><a href="/test/{{id}}">{{id}} - {{name}}</a></th>
+                   <td>{{status}} {{errMsg}}</td>
+                   <td>{{#if runAt}}{{formatdate runAt}}{{/if}}</td>
+               </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <form action='/runall'>
+        <div class="input-group">
+      <span class="input-group-addon">
+        BaseURL:
+      </span>
+            <input class="form-control" name="baseUrl" type="text" placeholder="http://test.com">
+        </div>
+        <button type="submit" class="btn btn-default">Run All Tests</button>
+    </form>
+</div>

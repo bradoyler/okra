@@ -1,0 +1,26 @@
+
+<div class="container">
+    <div class="">
+        <h3>Test Queue <span class="glyphicon glyphicon-flash"></span>
+        </h3>
+        <table class="table table-bordered table-hover">
+            <!--<caption>0 tests... 0 passed, 0 failed.</caption>-->
+            <thead>
+                <tr>
+                    <th>Run Id</th><th>Test</th><th>BaseUrl</th><th>Result</th><th>Executed</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each testruns}}
+               <tr class="{{#if errMsg}}danger{{/if}}">
+                   <th scope="row"><a href="/testrun/{{id}}">{{id}}</a></th>
+                   <td><a href="/test/{{testId}}">{{name}}</a></td>
+                   <td>{{baseUrl}}</td>
+                   <td>{{status}} {{errMsg}}</td>
+                   <td>{{#if runAt}}{{formatdate runAt}}{{/if}}</td>
+               </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

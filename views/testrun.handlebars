@@ -1,0 +1,31 @@
+<div class="container">
+    <h3>Test Run: {{name}} </h3>
+    {{#if runAt}}
+      <p>Executed: {{dateformat runAt 'MMMM Do, h:mm a'}} </p>
+    {{/if}}
+    <p class="{{#if errmsg}}text-danger{{/if}}"> Run : ({{status}}) {{runAt}} - {{#if errmsg}} Error: {{errmsg}}{{/if}}</p>
+
+    <hr />
+    <strong>BaseURL:</strong>
+    <p>{{baseUrl}}</p>
+    <hr />
+    <strong>Test URLs:</strong>
+    <ul>
+        {{#each urlSegments }}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+    <hr />
+    <strong>Assertions:</strong>
+    <ul>
+        {{#each assertions}}
+            <li> <div>Has {{type}}:</div><textarea>{{value}}</textarea> </li>
+        {{/each}}
+    </ul>
+    <strong>Results:</strong>
+    <ul>
+        {{#each results }}
+            <li>{{jsonstring this}}</li>
+        {{/each}}
+    </ul>
+</div>
