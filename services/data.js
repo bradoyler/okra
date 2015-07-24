@@ -1,3 +1,4 @@
+var request = require('request');
 var localData = require('../testData');
 
 localData.getTest = function (id, callback) {
@@ -108,10 +109,28 @@ function insertTestRun(test, baseUrl, callback) {
     callback(testRun);
 }
 
-module.exports.appName = localData.appName;
-module.exports.getTest = getTest;
-module.exports.getTests = getTests;
-module.exports.getTestRun = getTestRun;
-module.exports.getTestRuns = getTestRuns;
-module.exports.insertTestRun = insertTestRun;
-module.exports.saveTestResults = saveTestResults;
+function appName() {
+    return localData.appName || 'none';
+}
+
+function Data() {
+    var self =  this;
+    if(process.env.TESTDATA_URL) {
+        request(process.env.TESTDATA_URL, function (error, resp, body) {
+            var data = JSON.parse(body);
+            localData.appName = data.appName;
+            localData.tests = data.tests;
+        });
+    }
+}
+
+var data = new Data();
+data.appName = appName;
+data.getTest = getTest;
+data.getTests = getTests;
+data.getTestRun = getTestRun;
+data.getTestRuns = getTestRuns;
+data.insertTestRun = insertTestRun;
+data.saveTestResults = saveTestResults;
+
+module.exports = data;
