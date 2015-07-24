@@ -21,13 +21,18 @@
         {{/each}}
     </ul>
     <hr />
-  <form action='/run/{{id}}'>
-    <div class="input-group">
-      <span class="input-group-addon">
-        BaseURL:
-      </span>
-        <input class="form-control" name="baseUrl" type="text" placeholder="{{baseUrl}}">
+    <div class="row">
+        <div class="col-lg-6">
+            <form action='/run/{{id}}'>
+                <div class="input-group">
+                    <span class="input-group-addon">BaseURL:</span>
+                    <input class="form-control" name="baseUrl" type="text" placeholder="{{baseUrl}}">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">Run Test</button>
+                </span>
+                </div>
+            </form>
+
+        </div>
     </div>
-    <button type="submit" class="btn btn-default">Run Test</button>
-  </form>
 </div>

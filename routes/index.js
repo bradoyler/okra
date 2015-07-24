@@ -28,7 +28,6 @@ router.get('/api/runs', function (req, res) {
 
 router.post('/api/results', function (req, res) {
     var formData = req.body;
-    //console.log('### form--', formData);
 
     data.saveTestResults(formData.results, function (savedResults) {
          res.json(savedResults);
@@ -49,13 +48,13 @@ router.get('/testrun/:id', function (req, res) {
 
 router.get('/edit/:id', function (req, res) {
     data.getTest(req.params.id, function (test) {
-        res.render('edit', test);
+        res.render('login', test);
     });
 });
 
 router.get('/new', function (req, res) {
     data.getTest('', function (test) {
-        res.render('edit', test);
+        res.render('login', test);
     });
 });
 

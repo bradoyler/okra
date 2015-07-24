@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 var hbsHelpers = require('./helpers');
+var localData = require('./services/data');
 
 var routes = require('./routes/index');
 
@@ -20,6 +21,7 @@ app.engine('handlebars', exphbs({
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
+app.set('appName', localData.appName);
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));

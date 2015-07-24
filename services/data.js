@@ -33,7 +33,7 @@ function createTestRun(test, baseUrl) {
     testRun.id = test.id +'-'+ new Date().getTime();
     testRun.createdAt = new Date();
     testRun.runAt = '';
-    testRun.status = 'new';
+    testRun.status = 'queued';
     testRun.results = [];
     return testRun;
 }
@@ -108,16 +108,10 @@ function insertTestRun(test, baseUrl, callback) {
     callback(testRun);
 }
 
-function Data() {
-    // todo: add setup for mongodb
-}
-
-// public functions
-Data.prototype.getTest = getTest;
-Data.prototype.getTests = getTests;
-Data.prototype.getTestRun = getTestRun;
-Data.prototype.getTestRuns = getTestRuns;
-Data.prototype.insertTestRun = insertTestRun;
-Data.prototype.saveTestResults = saveTestResults;
-
-module.exports = new Data();
+module.exports.appName = localData.appName;
+module.exports.getTest = getTest;
+module.exports.getTests = getTests;
+module.exports.getTestRun = getTestRun;
+module.exports.getTestRuns = getTestRuns;
+module.exports.insertTestRun = insertTestRun;
+module.exports.saveTestResults = saveTestResults;

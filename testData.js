@@ -55,11 +55,11 @@ var testRun1 = JSON.parse(JSON.stringify(tests[1]));
 testRun1.testId = testRun1.id;
 testRun1.id = '10112213232';
 testRun1.errMsg = '';
-testRun1.status = 'new';
+testRun1.status = 'queued';
 testRun1.results = [];
 testRun1.createdAt = new Date();
 testRun1.baseUrl ='http://bradoyler.github.io';
 
 var testRuns = [testRun1];
 
-module.exports = {tests: tests, testRuns: testRuns};
+module.exports = {tests: tests, testRuns: testRuns, appName:'My Blog'};

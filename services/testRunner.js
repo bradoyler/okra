@@ -5,7 +5,7 @@ function TestRunner() {}
 
 function runTests(tests) {
     tests.forEach(function (test) {
-        if(test.status==='new'){
+        if(test.status==='queued'){
             console.log('### run:', test.name, test.id);
             runTest(test);
         }

@@ -1,10 +1,23 @@
 
 <div class="container">
-    <div class="">
-        <h3>Tests <span class="glyphicon glyphicon-tasks"></span>
-        </h3>
-        <table class="table table-bordered table-hover">
-            <!--<caption>4 tests... 3 passed, 1 failed.</caption>-->
+    <div class="row">
+        <div class="col-lg-6">
+            <h3><span class="glyphicon glyphicon-tasks"></span> Tests</h3>
+            <form action='/runall'>
+                <div class="input-group">
+                    <span class="input-group-addon">BaseURL:</span>
+                    <input class="form-control" name="baseUrl" type="text" placeholder="http://test.com">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">Run All Tests</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-hover">
+            <caption> </caption>
             <thead>
                 <tr>
                     <th>Test</th><th>Last Result</th><th>Executed</th>
@@ -19,15 +32,7 @@
                </tr>
             {{/each}}
             </tbody>
-        </table>
-    </div>
-    <form action='/runall'>
-        <div class="input-group">
-      <span class="input-group-addon">
-        BaseURL:
-      </span>
-            <input class="form-control" name="baseUrl" type="text" placeholder="http://test.com">
+            </table>
         </div>
-        <button type="submit" class="btn btn-default">Run All Tests</button>
-    </form>
+    </div>
 </div>
