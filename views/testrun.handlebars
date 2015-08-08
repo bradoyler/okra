@@ -3,7 +3,7 @@
     {{#if runAt}}
       <p>Executed: {{dateformat runAt 'MMMM Do, h:mm a'}} </p>
     {{/if}}
-    <p class="{{#if errmsg}}text-danger{{/if}}"> Run : ({{status}}) {{runAt}} - {{#if errmsg}} Error: {{errmsg}}{{/if}}</p>
+    <p class="{{#if errmsg}}text-danger{{else}}text-success{{/if}}"> {{status}} : {{runAt}} - {{#if errmsg}} Error: {{errmsg}}{{/if}}</p>
 
     <hr />
     <strong>BaseURL:</strong>
@@ -37,7 +37,7 @@
             {{#each results}}
                     {{#each this}}
                         <tr class="{{#ifEqual success 'false'}}danger{{/ifEqual}}">
-                            <td>{{testPath}}</td>
+                            <td><a href="{{../../baseUrl}}{{testPath}}">{{testPath}}</a></td>
                             <td>{{type}}</td>
                             <td>{{value}}</td>
                             <td>{{success}}</td>

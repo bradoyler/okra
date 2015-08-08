@@ -1,10 +1,7 @@
 var tests = [
     {
         id: '100',
-        name: 'Section (tech)',
-        runAt: '',
-        status: '',
-        errMsg: '',
+        name: 'Section (tech)', runAt: '', status: '', errMsg: '',
         baseUrl: 'http://bradoyler.github.io',
         urlSegments: ['/tech/', '/tech', '/tech/mobile', '/tech/mobile/', '/tech/gadgets'],
         assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<div class="panel-section'}]
@@ -12,19 +9,13 @@ var tests = [
     {
         id: '101',
         name: 'Home page',
-        runAt: '',
-        status: '',
-        errMsg: '',
         baseUrl: 'http://bradoyler.github.io',
         urlSegments: ['/'],
-        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<header class="grid'}]
+        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<h1>Bradoyler.github.io</h1>'}]
     },
     {
         id: '102',
         name: 'Article',
-        runAt: '',
-        status: '',
-        errMsg: '',
         baseUrl: 'http://bradoyler.github.io',
         urlSegments: ['/tech/gadgets/test-n364676'],
         assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<body'}]
@@ -32,9 +23,6 @@ var tests = [
     {
         id: '103',
         name: '404 page',
-        runAt: '',
-        status: '',
-        errMsg: '',
         baseUrl: 'http://bradoyler.github.io',
         urlSegments: ['/404'],
         assertions: [{type: 'statusCode', value: '404'}, {type: 'html', value: '<body'}]
@@ -42,9 +30,6 @@ var tests = [
     {
         id: '104',
         name: 'static pages',
-        runAt: '',
-        status: '',
-        errMsg: '',
         baseUrl: 'http://bradoyler.github.io',
         urlSegments: ['/test.html', '/pages/contact-us'],
         assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<body'}]

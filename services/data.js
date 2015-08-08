@@ -51,6 +51,13 @@ function getTestRun(id, callback) {
     localData.getTestRun(id, callback);
 }
 
+function getTestRunsByBaseUrl(baseUrl, callback) {
+    var testRunsByBaseUrl = localData.testRuns.filter(function (testrun) {
+        return (testrun.baseUrl.indexOf(baseUrl) > -1);
+    });
+    callback(testRunsByBaseUrl);
+}
+
 function getTestRuns(limit, callback) {
     callback(localData.testRuns);
 }
@@ -132,5 +139,6 @@ data.getTestRun = getTestRun;
 data.getTestRuns = getTestRuns;
 data.insertTestRun = insertTestRun;
 data.saveTestResults = saveTestResults;
+data.getTestRunsByBaseUrl = getTestRunsByBaseUrl;
 
 module.exports = data;

@@ -3,19 +3,19 @@
     <div class="row">
         <h3><span class="glyphicon glyphicon-flash"></span> Test Queue</h3>
         <table class="table table-bordered table-hover">
-            <caption>0 failures</caption>
+            <caption> <span class="text-success">{{#if passed}}{{passed}} passed{{/if}}</span> <span class="text-danger">{{#if failed}}/ {{failed}} failed{{/if}}</span> </caption>
             <thead>
                 <tr>
-                    <th>Test Run</th><th>Test</th><th>BaseUrl</th><th>Result</th>
+                    <th>TestRun</th><th>BaseUrl</th><th>Result</th><th>Executed</th>
                 </tr>
             </thead>
             <tbody>
             {{#each testruns}}
                <tr class="{{#if errMsg}}danger{{/if}}">
-                   <th scope="row"><a href="/testrun/{{id}}">{{#if runAt}}{{formatdate runAt}}{{/if}}</a></th>
-                   <td><a href="/test/{{testId}}">{{name}}</a></td>
+                   <th scope="row"><a href="/testrun/{{id}}"> {{name}}</a></th>
                    <td>{{baseUrl}}</td>
                    <td>{{status}} {{errMsg}}</td>
+                   <td>{{#if runAt}}{{formatdate runAt}} ago {{/if}}</td>
                </tr>
             {{/each}}
             </tbody>
