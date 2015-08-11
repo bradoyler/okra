@@ -27,6 +27,19 @@ router.get('/runs', function (req, res) {
     });
 });
 
+router.get('/runs/:baseurl', function (req, res) {
+    data.getTestRunsByBaseUrl(req.params.baseurl, function (testruns) {
+        var passed = testruns.filter(function (item) {
+            return (item.status=='success');
+        }).length;
+        var failed = testruns.filter(function (item) {
+            return (item.status=='fail');
+        }).length;
+
+        res.render('runs', {testruns:testruns, passed:passed, failed:failed});
+    });
+});
+
 router.get('/api/status/:baseurl', function (req, res) {
 
     data.getTestRunsByBaseUrl(req.params.baseurl, function (testruns) {
