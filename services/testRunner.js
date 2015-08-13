@@ -24,7 +24,11 @@ function getAssertionResults(response, test) {
             if (assertion.type === 'statusCode') {
                 assertion.success = (response.statusCode.toString() === assertion.value);
             }
-            else if (assertion.type === 'html') { //console.log('## json', decodeURI(assertion.value));
+            else if (assertion.type === 'html') {
+                assertion.success = (response.body.indexOf(decodeURI(assertion.value)) > -1);
+            }
+            else if (assertion.type === 'json') {
+                // todo: use json-assert or jsonschema
                 assertion.success = (response.body.indexOf(decodeURI(assertion.value)) > -1);
             }
     });
