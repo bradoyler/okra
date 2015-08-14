@@ -16,21 +16,30 @@ function getAssertionResults(response, test) {
 
     var assertions = test.assertions;
 
-    assertions.forEach(function (assertion) { //console.log('## assertion', assertion, response.statusCode);
+    assertions.forEach(function (assertion) {
+        //console.log('## assertion', assertion, response.statusCode);
         assertion.testRunId = test.id;
-        assertion.testPath = response.req.path;
+        assertion.success = false;
 
-        if (response.req.path !== assertion)
-            if (assertion.type === 'statusCode') {
-                assertion.success = (response.statusCode.toString() === assertion.value);
+        if(response) {
+
+            assertion.testPath = response.req.path;
+
+            if (response.req.path !== assertion) {
+
+                if (assertion.type === 'statusCode') {
+                    assertion.success = (response.statusCode.toString() === assertion.value);
+                }
+                else if (assertion.type === 'html') {
+                    assertion.success = (response.body.indexOf(decodeURI(assertion.value)) > -1);
+                }
+                else if (assertion.type === 'json') {
+                    // todo: use json-assert or jsonschema
+                    assertion.success = (response.body.indexOf(decodeURI(assertion.value)) > -1);
+                }
             }
-            else if (assertion.type === 'html') {
-                assertion.success = (response.body.indexOf(decodeURI(assertion.value)) > -1);
-            }
-            else if (assertion.type === 'json') {
-                // todo: use json-assert or jsonschema
-                assertion.success = (response.body.indexOf(decodeURI(assertion.value)) > -1);
-            }
+        }
+
     });
     return assertions; // results
 }
@@ -38,24 +47,19 @@ function getAssertionResults(response, test) {
 function testSegment(test, segment, callback) {
     request(test.baseUrl + segment, function (error, response, body) {
 
-        if (error) {
-            callback(error, []); return;
-        }
+        if (error)
+            console.error('### testSegment ERROR');
 
         var assertionResults = getAssertionResults(response, test);
-        callback(null, assertionResults);
+        callback(assertionResults);
     });
 }
 
 function runTest(test) {
 
     test.urlSegments.forEach(function (segment) {
-        testSegment(test, segment, function (error, results) {
-            if(error) {
-                return console.error('### test ERR for:'+ test.baseUrl + segment, error);
-            }
-
-            console.log('!### saving testresults for:', test.baseUrl + segment);
+        testSegment(test, segment, function (results) {
+            console.log('### saving testresults for:', test.baseUrl + segment);
             logResults(results);
         });
     });
