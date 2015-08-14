@@ -1,30 +1,17 @@
 var request = require('request');
 var localData = require('../testData');
 
-localData.getTest = function (id, callback) {
-    var test = localData.tests.filter(function (test) {
-        return (test.id === id);
-    })[0];
+function getTest(id, callback) {
+    localData.getTest(id, callback);
+}
 
-    if (test) {
-        callback(test); return;
-    }
+function getTests(limit, callback) {
+    callback(localData.tests);
+}
 
-    callback(localData.tests[0]);
-};
-
-localData.getTestRun = function (id, callback) {
-
-    var tr = localData.testRuns.filter(function (tr) {
-        return (tr.id === id);
-    })[0];
-
-    if (tr) {
-        callback(tr); return;
-    }
-
-    callback(localData.testRuns[0]);
-};
+function getTestRun(id, callback) {
+    localData.getTestRun(id, callback);
+}
 
 function createTestRun(test, baseUrl) {
     var testRun = JSON.parse(JSON.stringify(test));
@@ -39,18 +26,6 @@ function createTestRun(test, baseUrl) {
     return testRun;
 }
 
-function getTest(id, callback) {
-    localData.getTest(id, callback);
-}
-
-function getTests(limit, callback) {
-    callback(localData.tests);
-}
-
-function getTestRun(id, callback) {
-    localData.getTestRun(id, callback);
-}
-
 function getTestRunsByBaseUrl(baseUrl, callback) {
     var testRunsByBaseUrl = localData.testRuns.filter(function (testrun) {
         return (testrun.baseUrl.indexOf(baseUrl) > -1);
@@ -63,7 +38,7 @@ function getTestRuns(limit, callback) {
 }
 
 function updateTestWithResults(testrun, results) {
-    localData.getTest(testrun.testId, function (test) {
+    getTest(testrun.testId, function (test) {
 
         test.status = 'success';
         test.errMsg = '';
@@ -83,7 +58,7 @@ function updateTestWithResults(testrun, results) {
 
 function saveTestResults(results, callback) {
 
-    localData.getTestRun(results[0].testRunId, function (testrun) {
+    getTestRun(results[0].testRunId, function (testrun) {
 
         if (testrun) {
             testrun.results.push(results);

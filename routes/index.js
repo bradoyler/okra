@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var data = require('../services/data');
 
-/* GET home page. */
 function isUrl(url) {
     var _url = url || '';
     return _url.match(/(http|https):\/\//);

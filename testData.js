@@ -47,4 +47,35 @@ testRun1.baseUrl ='http://bradoyler.github.io';
 
 var testRuns = [testRun1];
 
-module.exports = {tests: tests, testRuns: testRuns, appName:'My Blog'};
+function getTest(id, callback) {
+    var test = tests.filter(function (test) {
+        return (test.id === id);
+    })[0];
+
+    if (test) {
+        callback(test); return;
+    }
+
+    callback(localData.tests[0]);
+};
+
+function getTestRun(id, callback) {
+
+    var tr = testRuns.filter(function (tr) {
+        return (tr.id === id);
+    })[0];
+
+    if (tr) {
+        callback(tr); return;
+    }
+
+    callback(testRuns[0]);
+};
+
+module.exports = {
+    tests: tests,
+    testRuns: testRuns,
+    appName:'My Blog',
+    getTestRun: getTestRun,
+    getTest: getTest
+};
