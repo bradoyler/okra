@@ -33,6 +33,4 @@ $ node worker
 see: [testData.js](https://github.com/bradoyler/okra/blob/master/testData.js)
 
 ## Video Tutorials
-#### [Running tests](https://www.youtube.com/watch?v=gKAULbgzVVU)
-
-#### Setting up tests. (coming soon...)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/gKAULbgzVVU/0.jpg)](http://www.youtube.com/watch?v=gKAULbgzVVU)
