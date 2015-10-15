@@ -31,3 +31,8 @@ $ node worker
 
 ### Modify tests
 see: [testData.js](https://github.com/bradoyler/okra/blob/master/testData.js)
+
+## Video Tutorials
+#### [Running tests](https://www.youtube.com/watch?v=gKAULbgzVVU)
+
+#### Setting up tests. (coming soon...)
