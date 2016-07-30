@@ -1,7 +1,7 @@
 # Okra
 A test harness & assertion tool for web pages and API endpoints.
 
-![okra-logo-lg](https://cloud.githubusercontent.com/assets/425966/8689640/7a5ef674-2a78-11e5-9cb2-f0fce7d7e26a.png)
+<img height="160" src="https://cloud.githubusercontent.com/assets/425966/8689640/7a5ef674-2a78-11e5-9cb2-f0fce7d7e26a.png"/>
 
 > For now, no db required, just push it to Heroku
 
