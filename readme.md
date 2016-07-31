@@ -1,9 +1,12 @@
 # Okra
 A test harness & assertion tool for web pages and API endpoints.
 
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+[![Build Status](https://travis-ci.org/bradoyler/okra.svg?branch=master)](https://travis-ci.org/bradoyler/okra)
+
 <img height="160" src="https://cloud.githubusercontent.com/assets/425966/8689640/7a5ef674-2a78-11e5-9cb2-f0fce7d7e26a.png"/>
 
-> For now, no db required, just push it to Heroku
+> No db required, just push it to Heroku
 
 ### Install
 
@@ -14,20 +17,14 @@ $ sudo npm install
 
 ```
 
-### View Tests
+### Run
 
 ```
-$ grunt
+$ gulp
 
 ```
 Goto: [localhost:3000](http://localhost:3000)
 
-
-### Execute Tests
-```
-$ node worker
-
-```
 
 ### Modify tests
 see: [testData.js](https://github.com/bradoyler/okra/blob/master/testData.js)

@@ -1,10 +1,14 @@
 <div class="container">
     <h3>Test: {{name}} </h3>
-    <p>Updated: {{dateformat updatedAt 'MMMM Do, h:mm a'}}</p>
-    <p class="{{#if errMsg}}text-danger{{/if}}"><a href="/testrun/{{lastRunId}}">Last run: ({{status}}) {{runAt}} - {{#if errmsg}} Error: {{errMsg}}{{/if}}</a></p>
 
-    <hr />
+    <p>Updated: {{dateformat updatedAt 'MMMM Do, h:mm a'}}</p>
+
+    <p class="{{#if errMsg}}text-danger{{/if}}"><a href="/testrun/{{lastRunId}}">Last run: ({{status}}) {{runAt}}
+        - {{#if errmsg}} Error: {{errMsg}}{{/if}}</a></p>
+
+    <hr/>
     <strong>Default BaseURL:</strong>
+
     <p>{{baseUrl}}</p>
 
     <strong>Test URLs:</strong>
@@ -13,14 +17,16 @@
             <li>{{this}}</li>
         {{/each}}
     </ul>
-    <hr />
+    <hr/>
     <strong>Assertions:</strong>
     <ul>
         {{#each assertions}}
-            <li> <div>Has {{type}}:</div><textarea>{{value}}</textarea> </li>
+            <li>
+                <div>Has {{type}}:</div>
+                <textarea>{{value}}</textarea></li>
         {{/each}}
     </ul>
-    <hr />
+    <hr/>
     <div class="row">
         <div class="col-lg-6">
             <form action='/run/{{id}}'>

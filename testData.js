@@ -1,81 +1,80 @@
 var tests = [
-    {
-        id: '100',
-        name: 'Section (tech)', runAt: '', status: '', errMsg: '',
-        baseUrl: 'http://bradoyler.github.io',
-        urlSegments: ['/tech/', '/tech', '/tech/mobile', '/tech/mobile/', '/tech/gadgets'],
-        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<div class="panel-section'}]
-    },
-    {
-        id: '101',
-        name: 'Home page',
-        baseUrl: 'http://bradoyler.github.io',
-        urlSegments: ['/'],
-        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<h1>Bradoyler.github.io</h1>'}]
-    },
-    {
-        id: '102',
-        name: 'Article',
-        baseUrl: 'http://bradoyler.github.io',
-        urlSegments: ['/tech/gadgets/test-n364676'],
-        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<body'}]
-    },
-    {
-        id: '103',
-        name: '404 page',
-        baseUrl: 'http://bradoyler.github.io',
-        urlSegments: ['/404'],
-        assertions: [{type: 'statusCode', value: '404'}, {type: 'html', value: '<body'}]
-    },
-    {
-        id: '104',
-        name: 'static pages',
-        baseUrl: 'http://bradoyler.github.io',
-        urlSegments: ['/test.html', '/pages/contact-us'],
-        assertions: [{type: 'statusCode', value: '200'}, {type: 'html', value: '<body'}]
-    }
-];
+  {
+    id: '100',
+    name: 'Section (tech)', runAt: '', status: '', errMsg: '',
+    baseUrl: 'http://bradoyler.github.io',
+    urlSegments: [ '/tech/', '/tech', '/tech/mobile', '/tech/mobile/', '/tech/gadgets' ],
+    assertions: [ { type: 'statusCode', value: '200' }, { type: 'html', value: '<div class="panel-section' } ]
+  },
+  {
+    id: '101',
+    name: 'Home page',
+    baseUrl: 'http://bradoyler.github.io',
+    urlSegments: [ '/' ],
+    assertions: [ { type: 'statusCode', value: '200' }, { type: 'html', value: '<h1>Bradoyler.github.io</h1>' } ]
+  },
+  {
+    id: '102',
+    name: 'Article',
+    baseUrl: 'http://bradoyler.github.io',
+    urlSegments: [ '/tech/gadgets/test-n364676' ],
+    assertions: [ { type: 'statusCode', value: '200' }, { type: 'html', value: '<body' } ]
+  },
+  {
+    id: '103',
+    name: '404 page',
+    baseUrl: 'http://bradoyler.github.io',
+    urlSegments: [ '/404' ],
+    assertions: [ { type: 'statusCode', value: '404' }, { type: 'html', value: '<body' } ]
+  },
+  {
+    id: '104',
+    name: 'static pages',
+    baseUrl: 'http://bradoyler.github.io',
+    urlSegments: [ '/test.html', '/pages/contact-us' ],
+    assertions: [ { type: 'statusCode', value: '200' }, { type: 'html', value: '<body' } ]
+  }
+]
 
-var testRun1 = JSON.parse(JSON.stringify(tests[1]));
-testRun1.testId = testRun1.id;
-testRun1.id = '10112213232';
-testRun1.errMsg = '';
-testRun1.status = 'queued';
-testRun1.results = [];
-testRun1.createdAt = new Date();
-testRun1.baseUrl ='http://bradoyler.github.io';
+var testRun1 = JSON.parse(JSON.stringify(tests[ 1 ]))
+testRun1.testId = testRun1.id
+testRun1.id = '10112213232'
+testRun1.errMsg = ''
+testRun1.status = 'queued'
+testRun1.results = []
+testRun1.createdAt = new Date()
+testRun1.baseUrl = 'http://bradoyler.github.io'
 
-var testRuns = [testRun1];
+var testRuns = [ testRun1 ]
 
-function getTest(id, callback) {
-    var test = tests.filter(function (test) {
-        return (test.id === id);
-    })[0];
+function getTest (id, callback) {
+  var test = tests.filter(function (test) {
+    return (test.id === id)
+  })[ 0 ]
 
-    if (test) {
-        callback(test); return;
-    }
+  if (test) {
+    return callback(test)
+  }
 
-    callback(localData.tests[0]);
-};
+  callback(tests[0])
+}
 
-function getTestRun(id, callback) {
+function getTestRun (id, callback) {
+  var tr = testRuns.filter(function (tr) {
+    return (tr.id === id)
+  })[ 0 ]
 
-    var tr = testRuns.filter(function (tr) {
-        return (tr.id === id);
-    })[0];
+  if (tr) {
+    return callback(tr)
+  }
 
-    if (tr) {
-        callback(tr); return;
-    }
-
-    callback(testRuns[0]);
-};
+  callback(testRuns[ 0 ])
+}
 
 module.exports = {
-    tests: tests,
-    testRuns: testRuns,
-    appName:'My Blog',
-    getTestRun: getTestRun,
-    getTest: getTest
-};
+  tests: tests,
+  testRuns: testRuns,
+  appName: 'My Blog',
+  getTestRun: getTestRun,
+  getTest: getTest
+}

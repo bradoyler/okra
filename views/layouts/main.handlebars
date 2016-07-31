@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{settings.appName}} OKRA</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
-        body {padding: 0;}
+        body {
+            padding: 0;
+        }
     </style>
-    <script src="http://localhost:35729/livereload.js"></script>
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
@@ -18,7 +19,9 @@
         <div class="navbar-header">
             <a class="navbar-brand" style="text-align: center; padding-top: 2px;" href="/">
                 <span>{{settings.appName}}</span>
-                <img style="height: 25px" src="https://cloud.githubusercontent.com/assets/425966/8689946/49f7ed2a-2a7c-11e5-86dd-6d3a67b15437.png" alt="logo">
+                <img style="height: 25px"
+                     src="https://cloud.githubusercontent.com/assets/425966/8689946/49f7ed2a-2a7c-11e5-86dd-6d3a67b15437.png"
+                     alt="logo">
             </a>
             <ul class="nav navbar-nav">
                 <li><a href="/runs">Test Queue</a></li>
@@ -28,7 +31,7 @@
     </div>
 </nav>
 
-  {{{body}}}
+{{{body}}}
 
-  </body>
+</body>
 </html>

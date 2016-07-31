@@ -1,22 +1,25 @@
-
 <div class="container">
     <div class="row">
         <h3><span class="glyphicon glyphicon-flash"></span> Test Queue</h3>
         <table class="table table-bordered table-hover">
-            <caption> <span class="text-success">{{#if passed}}{{passed}} passed{{/if}}</span> <span class="text-danger">{{#if failed}}/ {{failed}} failed{{/if}}</span> </caption>
+            <caption><span class="text-success">{{#if passed}}{{passed}} passed{{/if}}</span> <span
+                    class="text-danger">{{#if failed}}/ {{failed}} failed{{/if}}</span></caption>
             <thead>
-                <tr>
-                    <th>TestRun</th><th>BaseUrl</th><th>Result</th><th>Executed</th>
-                </tr>
+            <tr>
+                <th>TestRun</th>
+                <th>BaseUrl</th>
+                <th>Result</th>
+                <th>Executed</th>
+            </tr>
             </thead>
             <tbody>
             {{#each testruns}}
-               <tr class="{{#if errMsg}}danger{{/if}}">
-                   <th scope="row"><a href="/testrun/{{id}}"> {{name}}</a></th>
-                   <td>{{baseUrl}}</td>
-                   <td>{{status}} {{errMsg}}</td>
-                   <td>{{#if runAt}}{{formatdate runAt}} ago {{/if}}</td>
-               </tr>
+                <tr class="{{#if errMsg}}danger{{/if}}">
+                    <th scope="row"><a href="/testrun/{{id}}"> {{name}}</a></th>
+                    <td>{{baseUrl}}</td>
+                    <td>{{status}} {{errMsg}}</td>
+                    <td>{{#if runAt}}{{formatdate runAt}} ago {{/if}}</td>
+                </tr>
             {{/each}}
             </tbody>
         </table>

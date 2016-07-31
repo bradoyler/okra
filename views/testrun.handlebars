@@ -1,25 +1,29 @@
 <div class="container">
     <h3>Test Run: {{name}} </h3>
     {{#if runAt}}
-      <p>Executed: {{dateformat runAt 'MMMM Do, h:mm a'}} </p>
+        <p>Executed: {{dateformat runAt 'MMMM Do, h:mm a'}} </p>
     {{/if}}
-    <p class="{{#if errmsg}}text-danger{{else}}text-success{{/if}}"> {{status}} : {{runAt}} - {{#if errmsg}} Error: {{errmsg}}{{/if}}</p>
+    <p class="{{#if errmsg}}text-danger{{else}}text-success{{/if}}"> {{status}} : {{runAt}} - {{#if errmsg}}
+        Error: {{errmsg}}{{/if}}</p>
 
-    <hr />
+    <hr/>
     <strong>BaseURL:</strong>
+
     <p>{{baseUrl}}</p>
-    <hr />
+    <hr/>
     <strong>Test URLs:</strong>
     <ul>
         {{#each urlSegments }}
             <li>{{this}}</li>
         {{/each}}
     </ul>
-    <hr />
+    <hr/>
     <strong>Assertions:</strong>
     <ul>
         {{#each assertions}}
-            <li> <div>Has {{type}}:</div><textarea>{{value}}</textarea> </li>
+            <li>
+                <div>Has {{type}}:</div>
+                <textarea>{{value}}</textarea></li>
         {{/each}}
     </ul>
 
@@ -30,19 +34,22 @@
             <!--<caption>4 tests... 3 passed, 1 failed.</caption>-->
             <thead>
             <tr>
-                <th>Path</th><th>Type</th><th>Value</th><th>Success</th>
+                <th>Path</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Success</th>
             </tr>
             </thead>
             <tbody>
             {{#each results}}
-                    {{#each this}}
-                        <tr class="{{#ifEqual success 'false'}}danger{{/ifEqual}}">
-                            <td><a href="{{../../baseUrl}}{{testPath}}">{{testPath}}</a></td>
-                            <td>{{type}}</td>
-                            <td>{{value}}</td>
-                            <td>{{success}}</td>
-                        </tr>
-                    {{/each}}
+                {{#each this}}
+                    <tr class="{{#ifEqual success 'false'}}danger{{/ifEqual}}">
+                        <td><a href="{{../../baseUrl}}{{testPath}}">{{testPath}}</a></td>
+                        <td>{{type}}</td>
+                        <td>{{value}}</td>
+                        <td>{{success}}</td>
+                    </tr>
+                {{/each}}
             {{/each}}
             </tbody>
         </table>

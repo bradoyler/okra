@@ -1,9 +1,37 @@
 #!/usr/bin/env node
-var debug = require('debug')('expressapp');
-var app = require('../app');
+var debug = require('debug')('expressapp')
+var app = require('../app')
 
-app.set('port', process.env.PORT || 3000);
+var CronJob = require('cron').CronJob
+var testRunner = require('../services/testRunner')()
+// var resTestApi = process.env.API_BASE_URL || 'http://localhost:3000'
+var cronInterval = process.env.CRON_INTERVAL || '*/9 * * * * *'
+var startTestRunner = process.env.START_TESTRUNNER || (!process.env.NODE_ENV)
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
-});
+function startCron (resTestApi) {
+
+  new CronJob(cronInterval, function () {
+    console.log('## worker polled for new test -' + new Date())
+
+    testRunner.getTestRunsFromApi(resTestApi, function (error, data) {
+      if (!error) {
+        testRunner.runTests(data.testruns)
+      }
+      else {
+        console.log('### getTestRunsFromApi() ERROR:', error)
+      }
+    })
+
+  }, null, true, 'America/New_York')
+}
+
+app.set('port', process.env.PORT || 3000)
+
+var server = app.listen(app.get('port'), function () {
+  debug('Express server listening on port ' + server.address().port)
+
+  if (startTestRunner) {
+    console.log('>>> testRunner started: http://localhost:' + app.get('port'))
+    startCron('http://localhost:' + app.get('port'))
+  }
+})
