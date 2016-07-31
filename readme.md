@@ -8,6 +8,9 @@ A test harness & assertion tool for web pages and API endpoints.
 
 > No db required, just push it to Heroku
 
+## Demo
+![okra demo](https://cloud.githubusercontent.com/assets/425966/17274396/22c00b3a-56ad-11e6-8e69-b8e485786f77.gif)
+
 ### Install
 
 ```
@@ -28,6 +31,3 @@ Goto: [localhost:3000](http://localhost:3000)
 
 ### Modify tests
 see: [testData.js](https://github.com/bradoyler/okra/blob/master/testData.js)
-
-## Video Tutorials
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/gKAULbgzVVU/0.jpg)](http://www.youtube.com/watch?v=gKAULbgzVVU)
