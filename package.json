@@ -1,22 +1,35 @@
 {
   "name": "okra",
   "version": "0.1.0",
-  "private": true,
+  "description": "Smoke-test harness (OK Response Assertion)",
+  "main": "worker.js",
   "scripts": {
     "start": "node ./bin/www",
     "startworker": "node worker",
     "test": "standard"
   },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/bradoyler/okra.git"
+  },
+  "keywords": [
+    "api",
+    "smoke",
+    "testing",
+    "assert"
+  ],
+  "author": "Brad Oyler <bradoyler@gmail.com> (github.com/bradoyler)",
+  "license": "MIT",
   "dependencies": {
-    "body-parser": "~1.10.0",
-    "cookie-parser": "~1.3.3",
-    "cron": "^1.0.9",
-    "debug": "~2.1.0",
-    "express": "~4.11.0",
-    "express-handlebars": "~1.1.0",
-    "moment": "^2.10.3",
-    "morgan": "~1.5.0",
-    "request": "^2.55.0",
+    "body-parser": "~1.15.0",
+    "cookie-parser": "~1.4.3",
+    "cron": "^1.1.0",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "express-handlebars": "^3.0.0",
+    "moment": "^2.14.0",
+    "morgan": "~1.7.0",
+    "request": "^2.74.0",
     "serve-favicon": "~2.2.0"
   },
   "devDependencies": {
@@ -25,8 +38,12 @@
     "gulp-nodemon": "2.1.0",
     "standard": "7.1.2"
   },
+  "bugs": {
+    "url": "https://github.com/bradoyler/okra/issues"
+  },
+  "homepage": "https://github.com/bradoyler/okra",
   "engines": {
-    "node": "4.3.x",
-    "npm": "2.14.x"
+    "node": "4.x",
+    "npm": "2.x"
   }
 }
