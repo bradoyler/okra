@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-require('dotenv').config({silent: false})
+require('dotenv').config({silent: true})
 var debug = require('debug')('expressapp')
 var app = require('../app')
 var CronJob = require('cron').CronJob
