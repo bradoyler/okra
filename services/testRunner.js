@@ -69,8 +69,12 @@ function runTest (test) {
 function logResults (results, callback) {
   var formData = { results: results } // must be KV pair
   request.post({ url: resTestApi + '/api/results', form: formData }, function (error, httpResponse, body) {
-    if (error || httpResponse.statusCode !== 200) {
-      console.error('##### ERR', error, httpResponse.statusCode, body)
+    if (error) {
+      return console.error('##### ERR', error)
+    }
+
+    if (httpResponse.statusCode !== 200) {
+      return console.error('##### statusCode', httpResponse.statusCode)
     }
   })
 }
