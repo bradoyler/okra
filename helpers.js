@@ -1,5 +1,16 @@
 var moment = require('moment')
 
+exports.findById = function (id, collection) {
+  var item = collection.filter(function (item) {
+    return (item.id === id)
+  })[0]
+
+  if (item) {
+    return item
+  }
+  return collection[0]
+}
+
 exports.ifEqual = function (val, test, options) {
   if (typeof test === 'undefined') {
     return options.inverse(this)

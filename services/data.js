@@ -1,16 +1,21 @@
+var crypto = require('crypto')
 var request = require('request')
+var helpers = require('../helpers')
 var localData = require('../testData')
+var appData = {tests: [], testRuns: [], shasum: null}
 
 function getTest (id, callback) {
-  localData.getTest(id, callback)
+  var test = helpers.findById(id, appData.tests)
+  callback(test)
 }
 
 function getTests (limit, callback) {
-  callback(localData.tests)
+  callback(appData.tests.slice(0, limit))
 }
 
 function getTestRun (id, callback) {
-  localData.getTestRun(id, callback)
+  var testRun = helpers.findById(id, appData.testRuns)
+  callback(testRun)
 }
 
 function createTestRun (test, baseUrl) {
@@ -34,7 +39,7 @@ function getTestRunsByBaseUrl (baseUrl, callback) {
 }
 
 function getTestRuns (limit, callback) {
-  callback(localData.testRuns)
+  callback(appData.testRuns.slice(0, limit))
 }
 
 function updateTestWithResults (testrun, results) {
@@ -56,7 +61,7 @@ function updateTestWithResults (testrun, results) {
 }
 
 function saveTestResults (results, callback) {
-  getTestRun(results[ 0 ].testRunId, function (testrun) {
+  getTestRun(results[0].testRunId, function (testrun) {
     if (testrun) {
       testrun.results.push(results)
       if (testrun.status !== 'fail') {
@@ -83,28 +88,43 @@ function saveTestResults (results, callback) {
 
 function insertTestRun (test, baseUrl, callback) {
   var testRun = createTestRun(test, baseUrl)
-  localData.testRuns.unshift(testRun)
+  appData.testRuns.unshift(testRun)
   callback(testRun)
 }
 
 function appName () {
-  return localData.appName || 'none'
+  return appData.appName || 'none'
 }
 
-function Data () {
+function initData () {
   if (process.env.TESTDATA_URL) {
     request(process.env.TESTDATA_URL, function (err, resp, body) {
       if (err) {
+        console.log('>> initData ERR:', err)
         return
       }
       var data = JSON.parse(body)
-      localData.appName = data.appName
-      localData.tests = data.tests
+      var responseSha = crypto.createHash('sha1').update(JSON.stringify(data)).digest('hex')
+
+      console.log('>>> initData via:', process.env.TESTDATA_URL, '\n > appData.shasum:', appData.shasum, '\n > responseSha:', responseSha)
+
+      if (responseSha !== appData.shasum) {
+        appData.shasum = responseSha
+        appData.appName = data.appName
+        appData.tests = data.tests
+      }
     })
+  } else {
+    appData = localData
   }
 }
 
+function Data () {
+  initData()
+}
+
 var data = new Data()
+data.initData = initData
 data.appName = appName
 data.getTest = getTest
 data.getTests = getTests

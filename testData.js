@@ -45,36 +45,10 @@ testRun1.results = []
 testRun1.createdAt = new Date()
 testRun1.baseUrl = 'http://bradoyler.github.io'
 
-var testRuns = [ testRun1 ]
-
-function getTest (id, callback) {
-  var test = tests.filter(function (test) {
-    return (test.id === id)
-  })[ 0 ]
-
-  if (test) {
-    return callback(test)
-  }
-
-  callback(tests[0])
-}
-
-function getTestRun (id, callback) {
-  var tr = testRuns.filter(function (tr) {
-    return (tr.id === id)
-  })[ 0 ]
-
-  if (tr) {
-    return callback(tr)
-  }
-
-  callback(testRuns[ 0 ])
-}
+var testRuns = [testRun1]
 
 module.exports = {
   tests: tests,
   testRuns: testRuns,
-  appName: 'My Blog',
-  getTestRun: getTestRun,
-  getTest: getTest
+  appName: 'My Blog'
 }

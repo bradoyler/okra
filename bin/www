@@ -1,14 +1,16 @@
 #!/usr/bin/env node
+require('dotenv').config({silent: false})
 var debug = require('debug')('expressapp')
 var app = require('../app')
-
 var CronJob = require('cron').CronJob
 var testRunner = require('../services/testRunner')()
 // var resTestApi = process.env.API_BASE_URL || 'http://localhost:3000'
 var cronInterval = process.env.CRON_INTERVAL || '*/9 * * * * *'
-var startTestRunner = process.env.START_TESTRUNNER || (!process.env.NODE_ENV)
+var startTestRunner = process.env.START_TESTRUNNER
 
 function startCron (resTestApi) {
+
+  console.log('>> CRON_INTERVAL:', process.env.CRON_INTERVAL);
 
   new CronJob(cronInterval, function () {
     console.log('## worker polled for new test -' + new Date())
@@ -30,7 +32,7 @@ app.set('port', process.env.PORT || 3000)
 var server = app.listen(app.get('port'), function () {
   debug('Express server listening on port ' + server.address().port)
 
-  if (startTestRunner) {
+  if (startTestRunner === 'true') {
     console.log('>>> testRunner started: http://localhost:' + app.get('port'))
     startCron('http://localhost:' + app.get('port'))
   }

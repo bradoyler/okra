@@ -13,6 +13,11 @@ router.get('/', function (req, res) {
   })
 })
 
+router.get('/refresh', function (req, res) {
+  data.initData()
+  res.redirect('/')
+})
+
 router.get('/runs', function (req, res) {
   data.getTestRuns(25, function (testruns) {
     var passed = testruns.filter(function (item) {
